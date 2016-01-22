@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<html>
+  <head>
+  <title> {% block title %} Store{% endblock title %} </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'store/css/bootstrap/dist/css/bootstrap.min.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'store/css/style.css' %}">
+  </head>
+  <body>
+  <div id="wrapper">
+
+  	<nav class="navbar navbar-fixed-top navbar-inverse">
+  	<div class="container">
+  	<div class = "navbar-header">
+  		<button type = "button" class = "navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+  	 	aria-expanded ="false" aria-controls="navbar">
+  	 		<span class="sr-only">Toggle navigation</span>
+  	 		<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  		</button>
+  		<a class = "navbar-brand" href="#">Welcome {{user}}</a>
+  	</div>
+   		<div id = "navbar" class = "collapse navbar-collapse">
+  	 		<ul class = "nav navbar-nav">
+  	 		{% if user.is_authenticated%}
+  	 			<li class ="active"><a href="{% url 'store:products' %}">Home</a></li>
+  	 			<li ><a href="#">Settings</a></li>
+  	 			<li ><a href="#">Profile</a></li>
+  	 			<li ><a href="{% url 'store:logout'%}">Log out</a></li>
+  	 			{% else %}
+  	 			<li ><a href="{% url 'store:login'%}">Log In</a></li>
+  	 			{%endif%}
+  			 </ul>
+  	 		</div>
+  	</div>
+  	</div>
+	</nav>
+
+  		<div class="container">
+			<h2>Welcome {{user}}</h2>
+
+   			{% block content %}
+   		 	{% endblock %}
+		</div>
+  	 
+  		<div class = "footer"> © 2016 Store  </div>
+  		<script src ="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
+   </div>
+  </body>
+</html>

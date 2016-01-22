@@ -1,0 +1,17 @@
+
+{% extends "store/base.html" %}
+
+{% block content %}
+
+<h1>{{product}} ${{product.price}}</h1>
+<p>{{product.description}}</p>
+
+{% if user.is_authenticated%}
+<h2> Contact User</h2>
+
+<h2>{{product.student}}
+{% else %}
+<h2>To Check contact user you must be Logged In</h2>
+<a href="{% url 'store:login'%}">Login Here</a>
+{% endif %}
+{% endblock %}

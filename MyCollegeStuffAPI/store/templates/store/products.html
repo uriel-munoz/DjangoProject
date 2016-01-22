@@ -1,0 +1,43 @@
+
+{% extends "store/base.html" %}
+
+{% block content %}
+
+
+
+
+<h2>Products list</h2>
+
+{% if item_list %}
+
+{% for item in item_list %}
+
+<li><a href="{% url 'store:details' item.id%}">{{item}} ${{item.price}}</a></li>
+<p>
+{{item.description}}
+</p>
+{% endfor %}
+
+
+{% else %}
+
+<p> No Items yet<p>
+
+{% endif %}
+
+{% if is_paginated %}
+<div class= "pagination">
+<span class = "page-links">
+{% if page_obj.has_previous %}
+ <a href ="/store/products?page={{page_obj.previous_page_number}}">Previous</a>
+ {% endif %}
+<span class = "page-current">
+	Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+	</span>
+{% if page_obj.has_next %}
+<a href= "/store/products?page={{page_obj.next_page_number}}">Next</a>
+{% endif %}
+</span>
+</div>
+{% endif %}
+{% endblock %}
